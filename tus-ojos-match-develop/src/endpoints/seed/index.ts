@@ -1,4 +1,7 @@
-import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from 'payload'
+import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest } from 'payload'
+
+/** Tipo local para el resultado de fetchFileByURL (evita referencia a File de payload en build Node) */
+type SeedFile = { name: string; data: Buffer; mimetype: string; size: number }
 
 import { contactForm as contactFormData } from './contact-form'
 import { contact as contactPageData } from './contact-page'
@@ -278,7 +281,7 @@ export const seed = async ({
   payload.logger.info('Seeded database successfully!')
 }
 
-async function fetchFileByURL(url: string): Promise<File> {
+async function fetchFileByURL(url: string): Promise<SeedFile> {
   const res = await fetch(url, {
     credentials: 'include',
     method: 'GET',

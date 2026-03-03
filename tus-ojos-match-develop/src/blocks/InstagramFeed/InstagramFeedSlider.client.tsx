@@ -12,6 +12,8 @@ import RichText from '@/components/RichText'
 import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 import './styles.css'
 
+const PLACEHOLDER_SLIDES = 6
+
 type Props = {
   posts: InstagramPost[]
   profile?: InstagramProfile | null
@@ -21,22 +23,22 @@ type Props = {
 
 export function InstagramFeedSlider({ posts, profile, caption, titleSection }: Props) {
   const swiperRef = useRef<SwiperType | null>(null)
+  const hasPosts = Array.isArray(posts) && posts.length > 0
+  const slides = hasPosts ? posts : Array.from({ length: PLACEHOLDER_SLIDES }, (_, i) => i)
 
   return (
-    <section className="instagram-feed container mx-auto py-12" data-aos="fade-up" data-aos-delay="500" >
+    <section className="instagram-feed container mx-auto py-12" data-aos="fade-up" data-aos-delay="500">
       <div className="flex flex-col gap-2 w-3/4 md:w-1/2">
+        {caption && (
+          <span className="caption">{caption}</span>
+        )}
 
-      
-      {caption && (
-        <span className="caption">{caption}</span>
-      )}
-
-      {titleSection && (
-        <div className="mb-8">
-          <RichText data={titleSection} enableGutter={false} enableProse={false} />
-        </div>
-      )}
-</div>
+        {titleSection && (
+          <div className="mb-8">
+            <RichText data={titleSection} enableGutter={false} enableProse={false} />
+          </div>
+        )}
+      </div>
 
       <Swiper
         modules={[Pagination]}
@@ -61,74 +63,96 @@ export function InstagramFeedSlider({ posts, profile, caption, titleSection }: P
           clickable: true,
           el: '.instagram-feed-pagination-container',
         }}
-        loop={posts.length > 5}
+        loop={slides.length > 5}
         className="instagram-feed-swiper"
         onSwiper={(swiper) => {
           swiperRef.current = swiper
         }}
       >
-        {posts.map((post) => {
-          const imageUrl =
-            post.media_type === 'VIDEO'
-              ? post.thumbnail_url ?? post.media_url
-              : post.media_url
+        {slides.map((slide, index) => {
+          if (hasPosts && typeof slide !== 'number') {
+            const post = slide as InstagramPost
+            const imageUrl =
+              post.media_type === 'VIDEO'
+                ? post.thumbnail_url ?? post.media_url
+                : post.media_url
 
+            return (
+              <SwiperSlide key={post.id}>
+                <a
+                  href={post.permalink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative group overflow-hidden block h-full w-full rounded-3xl"
+                >
+                  <Image
+                    src={imageUrl}
+                    alt={post.caption ?? 'Instagram post'}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover overflow-hidden transition-transform duration-300 group-hover:scale-105"
+                  />
+
+                  {post.username && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end pointer-events-none">
+                      <div className="flex flex-row absolute top-6 left-6 z-10 gap-2 items-center">
+                        {profile?.profile_picture_url && (
+                          <Image
+                            src={profile.profile_picture_url}
+                            alt={profile.username}
+                            width={40}
+                            height={40}
+                            className="rounded-full"
+                          />
+                        )}
+                        <div className="text-white flex flex-col">
+                          <span className="flex flex-row items-center gap-2">
+                            @{post.username}
+                            <Image src="/images/icon-verified.png" alt="Instagram" width={20} height={20} />
+                          </span>
+                          <span className="text-xs text-white/50">{profile?.followers_count} seguidores</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {post.media_type === 'VIDEO' && (
+                    <div className="absolute top-2 right-2">
+                      <svg className="w-5 h-5 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  )}
+                </a>
+              </SwiperSlide>
+            )
+          }
+
+          // Placeholder: misma estructura de slide, contenido reemplazado
           return (
-            <SwiperSlide key={post.id}>
-              <a
-                href={post.permalink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative group overflow-hidden block h-full w-full rounded-3xl"
-              >
-                <Image
-                  src={imageUrl}
-                  alt={post.caption ?? 'Instagram post'}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover overflow-hidden transition-transform duration-300 group-hover:scale-105"
-                />
+            <SwiperSlide key={`placeholder-${index}`}>
+              <div className="relative overflow-hidden block h-full w-full rounded-3xl bg-[#F0F5F5]">
+                {/* Placeholder imagen/video */}
+                <div className="absolute inset-0 flex items-center justify-center">
 
-                {/* Overlay full con username abajo */}
-                {post.username && (
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end pointer-events-none">
-                    <div className="flex flex-row absolute top-6 left-6 z-10 gap-2 items-center">
-                  
+                </div>
 
-                    {profile?.profile_picture_url && (
-                      <Image
-                        src={profile.profile_picture_url}
-                        alt={profile.username}
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                      />
-                    )}
-
-
-                    <div className="text-white flex flex-col">
-                      <span className="flex flex-row items-center gap-2">@{post.username} 
-                      <Image src="/images/icon-verified.png" alt="Instagram" width={20} height={20} />
+                {/* Overlay con placeholders: foto perfil, usuario, seguidores */}
+                <div className="absolute inset-0 bg-[#F0F5F5] flex flex-col justify-end pointer-events-none">
+                  <div className="flex flex-row absolute top-6 left-6 z-10 gap-2 items-center">
+                    <div
+                      className="w-10 h-10 rounded-full bg-white flex-shrink-0"
+                      aria-hidden
+                    />
+                    <div className="text-white flex flex-col gap-1">
+                      <span className="flex flex-row items-center gap-2">
+                        <span className="h-4 w-20 bg-white rounded" aria-hidden />
                       </span>
-                     <span className="text-xs text-white/50">{profile?.followers_count} seguidores</span> 
-                    </div>
-    
+                      <span className="h-3 w-16 bg-white rounded text-xs" aria-hidden />
                     </div>
                   </div>
-                )}
-
-                {post.media_type === 'VIDEO' && (
-                  <div className="absolute top-2 right-2">
-                    <svg
-                      className="w-5 h-5 text-white drop-shadow-md"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                )}
-              </a>
+                </div>
+              </div>
             </SwiperSlide>
           )
         })}

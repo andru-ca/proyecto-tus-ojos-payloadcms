@@ -15,10 +15,15 @@ export const InstagramFeedBlockComponent: React.FC<InstagramFeedBlockProps> = as
   titleSection,
   numberOfPosts = 9,
 }) => {
-  const { profile, posts } = await getInstagramData(numberOfPosts ?? 9)
+  let profile = null
+  let posts: Awaited<ReturnType<typeof getInstagramData>>['posts'] = []
 
-  if (!posts || posts.length === 0) {
-    return null
+  try {
+    const data = await getInstagramData(numberOfPosts ?? 9)
+    profile = data.profile
+    posts = data.posts ?? []
+  } catch {
+    // API sin respuesta: el slider muestra placeholders
   }
 
   return (

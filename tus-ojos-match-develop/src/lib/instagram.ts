@@ -1,5 +1,8 @@
 // src/lib/instagram.ts
 
+const INSTAGRAM_API_VERSION = 'v18.0'
+const BASE_URL = `https://graph.instagram.com/${INSTAGRAM_API_VERSION}`
+
 export interface InstagramPost {
   id: string
   media_type: 'IMAGE' | 'VIDEO' | 'CAROUSEL_ALBUM'
@@ -29,15 +32,28 @@ export async function getInstagramProfile(): Promise<InstagramProfile | null> {
   }
 
   try {
-    const url = `https://graph.instagram.com/${userId}?fields=id,username,profile_picture_url,followers_count,media_count&access_token=${accessToken}`
+    const url = `${BASE_URL}/${userId}?fields=id,username,profile_picture_url,followers_count,media_count&access_token=${accessToken}`
 
     const res = await fetch(url, {
       next: { revalidate: 3600 },
     })
 
-    if (!res.ok) throw new Error(`Instagram API error: ${res.status}`)
+    if (!res.ok) {
+      const body = await res.text()
+      try {
+        const json = JSON.parse(body) as { error?: { message?: string; code?: number; error_subcode?: number } }
+        console.error(
+          'Instagram profile API error:',
+          res.status,
+          json?.error?.message ?? (body || res.statusText),
+        )
+      } catch {
+        console.error('Instagram profile API error:', res.status, body || res.statusText)
+      }
+      return null
+    }
 
-    return await res.json() as InstagramProfile
+    return (await res.json()) as InstagramProfile
   } catch (error) {
     console.error('Error fetching Instagram profile:', error)
     return null
@@ -54,17 +70,29 @@ export async function getInstagramFeed(limit: number = 9): Promise<InstagramPost
   }
 
   try {
-    // ✅ profile_picture_url NO va aquí, no existe en este endpoint
-    const url = `https://graph.instagram.com/${userId}/media?fields=id,media_type,media_url,thumbnail_url,permalink,caption,timestamp,username&limit=${limit}&access_token=${accessToken}`
+    const url = `${BASE_URL}/${userId}/media?fields=id,media_type,media_url,thumbnail_url,permalink,caption,timestamp,username&limit=${limit}&access_token=${accessToken}`
 
     const res = await fetch(url, {
       next: { revalidate: 3600 },
     })
 
-    if (!res.ok) throw new Error(`Instagram API error: ${res.status}`)
+    if (!res.ok) {
+      const body = await res.text()
+      try {
+        const json = JSON.parse(body) as { error?: { message?: string; code?: number } }
+        console.error(
+          'Instagram feed API error:',
+          res.status,
+          json?.error?.message ?? (body || res.statusText),
+        )
+      } catch {
+        console.error('Instagram feed API error:', res.status, body || res.statusText)
+      }
+      return []
+    }
 
-    const data = await res.json()
-    return data.data as InstagramPost[]
+    const data = (await res.json()) as { data?: InstagramPost[] }
+    return data.data ?? []
   } catch (error) {
     console.error('Error fetching Instagram feed:', error)
     return []

@@ -1,13 +1,14 @@
+import '@/lib/polyfill-file'
+
 import type { CollectionSlug, PayloadRequest } from 'payload'
-import { getPayload } from 'payload'
 
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { NextRequest } from 'next/server'
 
-import configPromise from '@payload-config'
-
 export async function GET(req: NextRequest): Promise<Response> {
+  const { getPayload } = await import('payload')
+  const configPromise = (await import('@payload-config')).default
   const payload = await getPayload({ config: configPromise })
 
   const { searchParams } = new URL(req.url)
