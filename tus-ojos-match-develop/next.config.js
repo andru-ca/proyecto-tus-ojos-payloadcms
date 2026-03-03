@@ -62,8 +62,5 @@ const nextConfig = {
   redirects,
 }
 
-module.exports = withPayload(nextConfig, {
-  devBundleServerPackages: false,
-})
 
-//export default withPayload(nextConfig, { devBundleServerPackages: false })
+export default withPayload(nextConfig, { devBundleServerPackages: false })
