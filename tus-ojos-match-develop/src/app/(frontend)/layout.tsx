@@ -22,43 +22,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const headerData = await getCachedGlobal('header', 1)()
 
   return (
-    <html className="font-sans" lang="en" suppressHydrationWarning>
-      <head>
-        <InitTheme />
-        <link
-          href="/fonts/WOFF2/NunitoSans.woff2"
-          rel="preload"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+    <>
+      <InitTheme />
+      <AOSInit />
+      <Providers>
+        <AdminBar
+          adminBarProps={{
+            preview: isEnabled,
+          }}
         />
-        <link
-          href="/fonts/WOFF2/SequelSans-RomanDisp.woff2"
-          rel="preload"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-      </head>
-      <body>
-        <AOSInit />
-        <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-
-          <Header data={headerData} />
-          {children}
-          <Footer />
-          <MenuLateral />
-          <MobileCTA data={headerData} />
-        </Providers>
-      </body>
-    </html>
+        <Header data={headerData} />
+        {children}
+        <Footer />
+        <MenuLateral />
+        <MobileCTA data={headerData} />
+      </Providers>
+    </>
   )
 }
 
