@@ -1,0 +1,20 @@
+
+.title-menu-lateral{
+color: var(--Text-text-primary);
+font-family: var(--font-sans);
+font-size: var(--Heading-Small-fontSize);
+font-style: normal;
+font-weight: 800;
+line-height: var(--Heading-Small-lineHeight);
+letter-spacing: var(--Heading-Small-letterSpacing);
+}
+
+.subtitle-menu-lateral{
+color: var(--Text-text-secondary);
+font-family: var(--Display-Large-fontFamily);
+font-size: var(--Body-Medium-fontSize);
+font-style: normal;
+font-weight: 400;
+line-height: var(--Body-Medium-lineHeight);
+letter-spacing: var(--Body-Medium-letterSpacing);
+}

@@ -1,0 +1,25 @@
+.cards-block h3{
+color: var(--Text-text-primary);
+font-family: var(--font-heading);
+font-size: 24px;
+font-style: normal;
+font-weight: normal;
+line-height: 32px;
+letter-spacing: var(--Heading-Medium-letterSpacing);
+text-transform: uppercase;
+}
+
+/* Acento por item (cardsInformation[index]) */
+[data-card-index="0"] h3 em { 
+    font-family: var(--font-heading);
+    color: #FD152D;
+    font-weight: bold;
+    font-style: normal;
+}
+
+[data-card-index="1"] h3 em { 
+    font-family: var(--font-heading);
+    color: #17C7C1;
+    font-weight: bold;
+    font-style: normal;
+}

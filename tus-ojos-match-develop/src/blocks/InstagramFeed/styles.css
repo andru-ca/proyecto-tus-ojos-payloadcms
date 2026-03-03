@@ -1,0 +1,76 @@
+/* Ocultar flechas por defecto de Swiper (usamos botones custom) */
+.instagram-feed-swiper .swiper-button-next,
+.instagram-feed-swiper .swiper-button-prev {
+  display: none !important;
+}
+
+/* Contenedor de paginación (misma estructura que CarouselRecommendationBlock) */
+.instagram-feed-pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(135, 141, 150, 0.12);
+  padding: 20px;
+  border-radius: 100px;
+  width: fit-content !important;
+}
+
+.instagram-feed-pagination-container .swiper-pagination {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  transform: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  z-index: 10;
+}
+
+.instagram-feed-pagination-container .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(135, 141, 150, 0.6);
+  opacity: 1;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.instagram-feed-pagination-container .swiper-pagination-bullet-active {
+  background: rgba(135, 141, 150, 1);
+  width: 8px;
+  height: 8px;
+}
+
+.instagram-feed-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.instagram-feed-swiper .swiper-slide {
+  height: 448px;
+}
+
+.instagram-feed-swiper .swiper-slide > a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.instagram-feed-swiper .swiper-slide .relative img {
+  object-fit: cover;
+}
+
+
+.instagram-feed h2 strong:first-child   {
+  color:#FD152D;
+}
+.instagram-feed h2 strong:last-child   {
+  color:#138ED1;
+}
+
+

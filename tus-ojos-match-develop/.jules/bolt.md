@@ -1,0 +1,3 @@
+## 2025-05-15 - Optimizing Image Delivery with Next.js Image
+**Learning:** Hardcoding `quality={100}` in Next.js `Image` components disables important default optimizations, leading to significantly larger image payloads. Additionally, an incorrectly formatted or missing `sizes` attribute prevents the browser from selecting the most appropriate image size from the `srcset`.
+**Action:** Always prefer Next.js default quality (75) unless specifically required. When implementing `sizes`, ensure media queries are sorted correctly (ascending for `max-width`) and include a proper fallback like `100vw`.

@@ -1,0 +1,80 @@
+.tabs-information-block h1{
+  color: var(--Text-text-primary, #002330);
+font-family: "Sequel Sans";
+font-size: var(--Display-Small-fontSize, 48px);
+font-style: normal;
+font-weight: 410;
+line-height: var(--Display-Small-lineHeight, 54px);
+letter-spacing: var(--Display-Small-letterSpacing, 0);
+text-transform: uppercase;
+}
+
+.tabs-information-block span{
+  color: var(--Text-text-secondary);
+font-family: var(--Title-Small-fontFamily);
+font-size: var(--Title-Small-fontSize);
+font-style: normal;
+font-weight: 700;
+line-height: var(--Title-Small-lineHeight); 
+letter-spacing: var(--Title-Small-letterSpacing);
+
+}
+
+.value-stadistics{
+  color: #F70;
+font-family: var(--Heading-Large-fontFamily);
+font-size: var(--Heading-Large-fontSize);
+font-style: normal;
+font-weight: 400;
+line-height: var(--Heading-Large-lineHeight);
+letter-spacing: var(--Heading-Large-letterSpacing);
+
+}
+
+/* Solo para el RichText de consejos: icono 👉 en listas */
+.consejos-richtext ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.consejos-richtext ul li {
+  position: relative;
+  padding-left: 1.8rem;
+  font-size: var(--Body-Small-fontSize);
+  color: var(--Text-text-primary);
+  line-height: var(--Body-Small-lineHeight);  
+}
+
+.consejos-richtext ul li::before {
+  content: '👉';
+  position: absolute;
+  left: 0;
+}
+
+.consejos-richtext ol {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: consejos-counter;
+}
+
+.consejos-richtext ol li {
+  position: relative;
+  padding-left: 1.5rem;
+  counter-increment: consejos-counter;
+}
+
+.consejos-richtext ol li::before {
+  content: '👉';
+  position: absolute;
+  left: 0;
+}
+
+.description-richtext{
+  margin-bottom: 16px;
+
+}
+
+.description-richtext p{
+  margin:0;
+
+}

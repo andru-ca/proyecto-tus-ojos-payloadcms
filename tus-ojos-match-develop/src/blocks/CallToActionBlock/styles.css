@@ -1,0 +1,10 @@
+.call-to-action-block h2{
+color: var(--Text-text-inverse);
+font-family: 'Sequel Sans', sans-serif;
+font-size: var(--Heading-Medium-fontSize);
+font-style: normal;
+font-weight: var(--Heading-Medium-fontWeight);
+line-height: var(--Heading-Medium-lineHeight);
+letter-spacing: var(--Heading-Medium-letterSpacing);
+text-transform: uppercase;
+}

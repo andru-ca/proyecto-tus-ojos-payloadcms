@@ -1,0 +1,22 @@
+/* Máscara SVG gota para ImagenStep (icon-mask.svg) */
+.step-to-step__image-mask {
+  -webkit-mask-image: url('/icons/icon-mask.svg');
+  mask-image: url('/icons/icon-mask.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+h3{
+color: var(--Text-text-primary);
+font-family: var(--Title-Large-fontFamily);
+font-size: var(--Title-Large-fontSize);
+font-style: normal;
+font-weight: 700;
+line-height: var(--Title-Large-lineHeight);
+letter-spacing: var(--Title-Large-letterSpacing);
+text-transform: inherit;
+}

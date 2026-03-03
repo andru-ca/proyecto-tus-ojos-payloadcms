@@ -1,0 +1,673 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './fonts.css';
+@import './colors.css';
+
+@config '../../../tailwind.config.mjs';
+
+@custom-variant dark (&:is([data-theme='dark'] *));
+@custom-variant sm (@media (width >= theme(--breakpoint-sm)));
+@custom-variant md (@media (width >= theme(--breakpoint-md)));
+@custom-variant lg (@media (width >= theme(--breakpoint-lg)));
+@custom-variant xl (@media (width >= theme(--breakpoint-xl)));
+@custom-variant 2xl (@media (width >= theme(--breakpoint-2xl)));
+
+@layer base {
+  :root {
+    --font-sans: 'Nunito Sans', 'Nunito Sans Fallback', sans-serif;
+    --font-heading: 'Sequel Sans', 'Sequel Sans Fallback', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  a {
+    color: #0063B5;
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: var(--Body-Medium-fontSize);
+    line-height: var(--Body-Medium-lineHeight);
+    font-weight: var(--Body-Medium-fontWeight);
+  }
+}
+
+header nav a {
+color: var(--Text-text-brand);
+text-align: center;
+font-family: var(--Label-Large-fontFamily);
+font-size: var(--Label-Large-fontSize);
+font-style: normal;
+font-weight: 600;
+line-height: var(--Label-Large-lineHeight);
+letter-spacing: var(--Label-Large-letterSpacing);
+}
+
+.caption{
+color: var(--Text-text-secondary);
+font-family: var(--Label-Large-fontFamily);
+font-size: var(--Label-Large-fontSize);
+font-style: normal;
+font-weight: 600;
+line-height: var(--Label-Large-lineHeight); 
+letter-spacing: var(--Label-Large-letterSpacing);
+}
+
+/* Rick Text */
+
+.payload-richtext {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.payload-richtext * {
+  max-width: 100%;
+}
+
+.payload-richtext img {
+  max-width: 100%;
+  height: auto;
+}
+
+.payload-richtext table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.payload-richtext pre,
+.payload-richtext code {
+  overflow-x: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.payload-richtext a {
+  color: #72FFFF;
+  font-family: var(--font-sans);
+font-size: var(--Title-Medium-fontSize, 16px);
+font-style: normal;
+font-weight: 700;
+line-height: var(--Title-Medium-lineHeight, 24px);
+letter-spacing: var(--Title-Medium-letterSpacing, 0);
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-decoration-skip-ink: none;
+text-decoration-thickness: auto;
+text-underline-offset: auto;
+text-underline-position: from-font;
+word-break: break-word;
+}
+
+.payload-richtext ul,
+.payload-richtext ol {
+  margin: 0;
+  padding-left: 2em;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.payload-richtext ul {
+  list-style-type: disc;
+}
+
+.payload-richtext ol {
+  list-style-type: decimal;
+}
+
+.payload-richtext li {
+  margin: 0.5em 0;
+  line-height: 1.6;
+}
+
+.payload-richtext ul ul,
+.payload-richtext ol ol,
+.payload-richtext ul ol,
+.payload-richtext ol ul {
+  margin: 0.5em 0;
+}
+
+.payload-richtext ul[data-type='checklist'] {
+  list-style: none;
+  padding-left: 0;
+}
+
+.payload-richtext ul[data-type='checklist'] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.payload-richtext ul[data-type='checklist'] li::before {
+  content: '☐';
+  font-size: 1.2em;
+  line-height: 1;
+  margin-top: 0.1em;
+}
+
+.payload-richtext ul[data-type='checklist'] li[data-checked='true']::before {
+  content: '☑';
+}
+
+.payload-richtext blockquote {
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 4px solid #e5e7eb;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.payload-richtext hr {
+  margin: 2em 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+
+.text-highlight {
+  color: #4cc3ff;
+  font-weight: 600;
+}
+
+
+h1{
+  font-size: var(--Display-Small-fontSize);
+  font-weight: 400;
+  letter-spacing: var(--Display-Small-letterSpacing);
+  line-height: var(--Display-Small-lineHeight);
+  text-transform: uppercase;
+}
+
+
+h2{
+   font-size: var(--Display-Small-fontSize);
+   font-weight: 100;
+   letter-spacing: 0px;
+   line-height: var(--Display-Small-lineHeight);
+   text-transform: uppercase;
+}
+
+h3{
+  font-size: var(--Heading-Medium-fontSize);
+  font-weight: var(--Heading-Medium-fontWeight);
+  letter-spacing: var(--Heading-Medium-letterSpacing);
+  line-height: var(--Heading-Medium-lineHeight);
+  text-transform: uppercase;
+}
+
+h4{
+  font-size: var(--Heading-Small-fontSize);
+  letter-spacing: var(--Heading-Small-letterSpacing);
+  line-height: var(--Heading-Small-lineHeight);
+}
+
+
+
+strong{
+  font-family: 'Sequel Sans', sans-serif;
+  font-weight: bold;
+
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 32px; 
+  }
+}
+
+
+/*Hero */
+
+
+.heading-hero {
+color: #FFF;
+text-align: center;
+font-family: 'Sequel Sans', sans-serif;
+font-size: 160px;
+font-style: normal;
+font-weight: var(--font-weight-black);
+line-height: 160px; 
+}
+@media (max-width: 768px) {
+  .heading-hero {
+    font-size: 86.474px;
+    font-weight: 900;
+    line-height: 86.474px; 
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
+/*FAQ*/
+
+.question-title{
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px; 
+  font-weight: 400;
+  color: var(--Text-text-primary);
+}
+
+.text-answer {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: var(--Body-Medium-fontSize);
+  line-height: var(--Body-Medium-lineHeight);
+  color: var(--Text-text-secondary);
+}
+
+
+/*Tabs*/
+
+.label-tab{
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: var(--Label-Large-fontSize);
+  font-weight: 500;
+  line-height: var(--Label-Large-lineHeight);
+  letter-spacing: var(--Label-Large-letterSpacing);
+  color: var(--Text-text-brand);
+}
+
+
+@layer components {
+  .hero-overlay {
+  opacity: 0.7;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+      ),
+      url('/images/noise.png') rgb(61, 61, 61) 0px -213.738px / 100% 237.032% no-repeat;
+      
+  }
+
+  .footer-text-large {
+    font-size: 80px;
+    line-height: 84px;
+  }
+
+  @media (min-width: 768px) {
+    .footer-text-large {
+      font-size: 113.034px;
+      line-height: 169.551px;
+    } 
+  }
+}
+
+@plugin "@tailwindcss/typography";
+
+@source inline("lg:col-span-4");
+@source inline("lg:col-span-6");
+@source inline("lg:col-span-8");
+@source inline("lg:col-span-12");
+@source inline("border-border");
+@source inline("bg-card");
+@source inline("border-error");
+@source inline("bg-error/30");
+@source inline("border-success");
+@source inline("bg-success/30");
+@source inline("border-warning");
+@source inline("bg-warning/30");
+
+@theme {
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 86rem;
+  --font-mono: ui-monospace, 'SF Mono', monospace;
+  --font-sans: 'Nunito Sans', 'Nunito Sans Fallback', sans-serif;
+}
+
+@layer utilities {
+  .container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @variant sm {
+    .container {
+      max-width: var(--breakpoint-sm);
+    }
+  }
+
+  @variant md {
+    .container {
+      max-width: var(--breakpoint-md);
+      padding-inline: 2rem;
+    }
+  }
+
+  @variant lg {
+    .container {
+      max-width: var(--breakpoint-lg);
+    }
+  }
+
+  @variant xl {
+    .container {
+      max-width: var(--breakpoint-xl);
+    }
+  }
+
+  @variant 2xl {
+    .container {
+      max-width: var(--breakpoint-2xl);
+    }
+  }
+}
+
+:root {
+
+  /*Tipografía*/ 
+
+  --background: oklch(100% 0 0deg);
+  --foreground: oklch(14.5% 0 0deg);
+  --card: oklch(96.5% 0.005 265deg);
+  --card-foreground: oklch(14.5% 0 0deg);
+  --popover: oklch(100% 0 0deg);
+  --popover-foreground: oklch(14.5% 0 0deg);
+  --primary: oklch(20.5% 0 0deg);
+  --primary-foreground: oklch(98.5% 0 0deg);
+  --secondary: oklch(97% 0 0deg);
+  --secondary-foreground: oklch(20.5% 0 0deg);
+  --muted: oklch(97% 0 0deg);
+  --muted-foreground: oklch(55.6% 0 0deg);
+  --accent: oklch(97% 0 0deg);
+  --accent-foreground: oklch(20.5% 0 0deg);
+  --destructive: oklch(57.7% 0.245 27.325deg);
+  --destructive-foreground: oklch(57.7% 0.245 27.325deg);
+  --border: oklch(92.2% 0 0deg);
+  --input: oklch(92.2% 0 0deg);
+  --ring: oklch(70.8% 0 0deg);
+  --chart-1: oklch(64.6% 0.222 41.116deg);
+  --chart-2: oklch(60% 0.118 184.704deg);
+  --chart-3: oklch(39.8% 0.07 227.392deg);
+  --chart-4: oklch(82.8% 0.189 84.429deg);
+  --chart-5: oklch(76.9% 0.188 70.08deg);
+  --radius: 0.625rem;
+  --sidebar: oklch(98.5% 0 0deg);
+  --sidebar-foreground: oklch(14.5% 0 0deg);
+  --sidebar-primary: oklch(20.5% 0 0deg);
+  --sidebar-primary-foreground: oklch(98.5% 0 0deg);
+  --sidebar-accent: oklch(97% 0 0deg);
+  --sidebar-accent-foreground: oklch(20.5% 0 0deg);
+  --sidebar-border: oklch(92.2% 0 0deg);
+  --sidebar-ring: oklch(70.8% 0 0deg);
+  --success: oklch(78% 0.08 200deg);
+  --warning: oklch(89% 0.1 75deg);
+  --error: oklch(75% 0.15 25deg);
+}
+
+
+
+
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    overflow-x: hidden;
+  }
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    overflow-x: hidden;
+  }
+}
+
+html {
+  opacity: 0;
+}
+
+html[data-theme='dark'],
+html[data-theme='light'] {
+  opacity: initial;
+}
+
+
+
+
+
+:root{
+
+
+  --Text-text-primary: #002330;
+  --Text-text-secondary: #4D5358;
+  --Text-text-placeholder: #A2A9B0;
+  --Text-text-on-color: #FFFFFF;
+  --Text-text-on-color-secondary: #FFFFFF72;
+  --Text-text-on-color-disabled: #878D96;
+  --Text-text-helper: #697077;
+  --Text-text-error: #EC4135;
+  --Text-text-inverse: #FFFFFF;
+  --Text-text-disabled: #12161925;
+  --Text-text-brand: #0063B5;
+  --Text-text-brand-inverse: #9FD242;  
+
+
+
+
+
+  /*Display Large*/
+  --Display-Large-fontFamily: 'Nunito Sans', sans-serif;
+  --Display-Large-fontStyle: ExtraBold;
+  --Display-Large-fontWeight: 800;
+  --Display-Large-fontSize: 80px;
+  --Display-Large-letterSpacing: 0px; 
+  --Display-Large-paragraphSpacing: 0px;
+  --Display-Large-lineHeight: 88px;
+  
+  /*Display Medium*/
+  --Display-Medium-fontFamily: 'Nunito Sans', sans-serif;
+  --Display-Medium-fontStyle: ExtraBold;
+  --Display-Medium-fontWeight: 800;
+  --Display-Medium-fontSize: 64px;
+  --Display-Medium-letterSpacing: 0px; 
+  --Display-Medium-paragraphSpacing: 0px;
+  --Display-Medium-lineHeight: 70px;
+  
+  /*Display Small*/
+    
+      --Display-Small-fontFamily: 'Nunito Sans', sans-serif;
+      --Display-Small-fontStyle: ExtraBold;
+      --Display-Small-fontWeight: 800;
+      --Display-Small-fontSize:48px;
+      --Display-Small-letterSpacing: 0px; 
+      --Display-Small-paragraphSpacing: 0px;
+      --Display-Small-lineHeight: 56px;
+  
+  
+  
+  /*Heading Large*/
+  --Heading-Large-fontFamily: 'Nunito Sans', sans-serif;
+  --Heading-Large-fontStyle: ExtraBold;
+  --Heading-Large-fontWeight: 800;
+  --Heading-Large-fontSize: 40px;
+  --Heading-Large-letterSpacing: 0px; 
+  --Heading-Large-paragraphSpacing: 0px;
+  --Heading-Large-lineHeight: 44px;
+  
+  /*Heading Medium*/
+  --Heading-Medium-fontFamily: 'Nunito Sans', sans-serif;
+  --Heading-Medium-fontStyle: ExtraBold;
+  --Heading-Medium-fontWeight: 800;
+  --Heading-Medium-fontSize: 32px;
+  --Heading-Medium-letterSpacing: 0px; 
+  --Heading-Medium-paragraphSpacing: 0px;
+  --Heading-Medium-lineHeight: 40px;
+  
+  
+  /*Heading Small*/
+  --Heading-Small-fontFamily: 'Nunito Sans', sans-serif;
+  --Heading-Small-fontStyle: ExtraBold;
+  --Heading-Small-fontWeight: 800;
+  --Heading-Small-fontSize: 24px;
+  --Heading-Small-letterSpacing: 0px; 
+  --Heading-Small-paragraphSpacing: 0px;
+  --Heading-Small-lineHeight: 32px;
+  
+  
+    
+  /*Title Large*/
+   --Title-Large-fontFamily: 'Nunito Sans', sans-serif;
+   --Title-Large-fontStyle: Bold;
+   --Title-Large-fontWeight: 500;
+   --Title-Large-fontSize: 20px;
+   --Title-Large-letterSpacing: 0px; 
+   --Title-Large-paragraphSpacing: 0px;
+   --Title-Large-lineHeight: 28px;
+  
+  
+  /*Title Medium*/
+   --Title-Medium-fontFamily: 'Nunito Sans', sans-serif;
+   --Title-Medium-fontStyle: Bold;
+   --Title-Medium-fontWeight: 500;
+   --Title-Medium-fontSize: 16px;
+   --Title-Medium-letterSpacing: 0px; 
+   --Title-Medium-paragraphSpacing: 0px;
+   --Title-Medium-lineHeight: 24px;
+  
+   /*Title Small*/
+   --Title-Small-fontFamily: 'Nunito Sans', sans-serif;
+   --Title-Small-fontStyle: Bold;
+   --Title-Small-fontWeight: 700;
+   --Title-Small-fontSize: 14px;
+   --Title-Small-letterSpacing: 0px; 
+   --Title-Small-paragraphSpacing: 0px;
+   --Title-Small-lineHeight: 20px;
+  
+  /*Label*
+  
+   /*Label Large*/
+   --Label-Large-fontFamily: 'Nunito Sans', sans-serif;
+   --Label-Large-fontStyle: Semibold;
+   --Label-Large-fontWeight: 600;
+   --Label-Large-fontSize: 16px;
+   --Label-Large-letterSpacing: 0px; 
+   --Label-Large-paragraphSpacing: 0px;
+   --Label-Large-lineHeight: 24px;
+  
+   /*Label Medium*/
+   --Label-Medium-fontFamily: 'Nunito Sans', sans-serif;
+   --Label-Medium-fontStyle: Semibold;
+   --Label-Medium-fontWeight: 600;
+   --Label-Medium-fontSize: 14px;
+   --Label-Medium-letterSpacing: 0px; 
+   --Label-Medium-paragraphSpacing: 0px;
+   --Label-Medium-lineHeight: 20px;
+  
+   /*Label Small*/
+  
+   --Label-Small-fontFamily: 'Nunito Sans', sans-serif;
+   --Label-Small-fontStyle: Semibold;
+   --Label-Small-fontWeight: 600;
+   --Label-Small-fontSize: 12px;
+   --Label-Small-letterSpacing: 0px; 
+   --Label-Small-paragraphSpacing: 0px;
+   --Label-Small-lineHeight: 16px;
+  
+   /*Large*/
+  --Body-Large-fontFamily: 'Nunito Sans', sans-serif;
+  --Body-Large-fontStyle: Regular;
+  --Body-Large-fontWeight: 400; 
+  --Body-Large-fontSize: 20px;
+  --Body-Large-paragraphSpacing: 16px;
+  --Body-Large-letterSpacing: 0px; 
+  --Body-Large-lineHeight: 32px;
+  
+  
+      /*Medium*/
+      --Body-Medium-fontFamily: 'Nunito Sans', sans-serif;
+      --Body-Medium-fontStyle: Regular;
+      --Body-Medium-fontWeight: 400; 
+      --Body-Medium-fontSize: 16px;
+      --Body-Medium-paragraphSpacing: 16px;
+      --Body-Medium-letterSpacing: 0px; 
+      --Body-Medium-lineHeight: 24px;
+  
+  
+       /*Small*/
+       --Body-Small-fontFamily: 'Nunito Sans', sans-serif;
+       --Body-Small-fontStyle: Regular;
+       --Body-Small-fontWeight: 400; 
+       --Body-Small-fontSize: 14px;
+       --Body-Small-paragraphSpacing: 12px;
+       --Body-Small-letterSpacing: 0px; 
+       --Body-Small-lineHeight: 20px;
+  
+  
+     /*Caption*/
+      
+  --Caption-Large-fontFamily: 'Nunito Sans', sans-serif;
+  --Caption-Large-fontStyle: Regular;
+  --Caption-Large-fontWeight: 400;
+  --Caption-Large-fontSize: 12px;
+  --Caption-Large-letterSpacing: 0px; 
+  --Caption-Large-paragraphSpacing: 0px;
+  --Caption-Large-lineHeight: 16px;
+  
+  
+    }
+    

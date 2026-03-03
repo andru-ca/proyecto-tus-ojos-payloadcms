@@ -1,0 +1,58 @@
+/* Fallbacks con métricas similares para reducir salto al cargar (FOUT) */
+@font-face {
+  font-family: 'Sequel Sans Fallback';
+  src: local('Arial');
+  size-adjust: 98%;
+  ascent-override: 92%;
+  descent-override: 24%;
+}
+
+@font-face {
+  font-family: 'Nunito Sans Fallback';
+  src: local('Arial');
+  size-adjust: 106%;
+  ascent-override: 90%;
+  descent-override: 22%;
+}
+
+/* Sequel Sans */
+@font-face {
+  font-family: 'Sequel Sans';
+  src: url('/fonts/WOFF2/SequelSans-RomanDisp.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sequel Sans';
+  src: url('/fonts/WOFF2/SequelSans-BoldDisp.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sequel Sans';
+  src: url('/fonts/WOFF2/SequelSans-BlackDisp.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Nunito Sans */
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('/fonts/WOFF2/NunitoSans.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('/fonts/WOFF2/NunitoSans-Italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
